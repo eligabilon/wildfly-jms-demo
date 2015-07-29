@@ -1,0 +1,27 @@
+
+# Configuration JMS and Queues
+
+/extension=org.jboss.as.messaging:add
+/subsystem=messaging:add
+reload
+
+/subsystem=messaging/hornetq-server=default:add
+/subsystem=messaging/hornetq-server=default/in-vm-connector=in-vm:add(server-id=0)
+/subsystem=messaging/hornetq-server=default/in-vm-acceptor=in-vm:add(server-id=0)
+reload
+
+/subsystem=messaging/hornetq-server=default/pooled-connection-factory=hornetq-ra:add(transaction=xa, connector=[in-vm], entries=[java:/JmsXA, java:jboss/DefaultJMSConnectionFactory])
+/subsystem=messaging/hornetq-server=default/jms-queue=demo-request-queue:add(entries=[java:global/jms/queue/demo/request])
+/subsystem=messaging/hornetq-server=default/jms-queue=demo-reply-queue:add(entries=[java:global/jms/queue/demo/reply])
+/subsystem=ejb3:write-attribute(name=default-resource-adapter-name,value=hornetq-ra)
+/subsystem=ejb3:write-attribute(name=default-mdb-instance-pool,value=mdb-strict-max-pool)
+
+
+# Reset configuration
+
+/subsystem=ejb3:undefine-attribute(name=default-resource-adapter-name)
+/subsystem=ejb3:undefine-attribute(name=default-mdb-instance-pool)
+/subsystem=messaging/hornetq-server=default:remove
+/subsystem=messaging:remove
+/extension=org.jboss.as.messaging:remove
+
