@@ -24,7 +24,6 @@ import javax.ejb.Singleton;
 import javax.ejb.Timer;
 import javax.inject.Inject;
 import javax.jms.Destination;
-import javax.jms.JMSConnectionFactory;
 import javax.jms.JMSContext;
 
 import org.slf4j.Logger;
@@ -36,7 +35,6 @@ public class RequestSender {
   private static final Logger logger = LoggerFactory.getLogger(RequestSender.class);
 
   @Inject
-  @JMSConnectionFactory("java:/JmsXA")
   private JMSContext context;
 
   @Resource(name = "java:global/jms/queue/demo/request")

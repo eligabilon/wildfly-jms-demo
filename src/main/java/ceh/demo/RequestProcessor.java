@@ -23,7 +23,6 @@ import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
 import javax.inject.Inject;
 import javax.jms.Destination;
-import javax.jms.JMSConnectionFactory;
 import javax.jms.JMSContext;
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -43,7 +42,6 @@ public class RequestProcessor implements MessageListener {
   private static final Logger logger = LoggerFactory.getLogger(RequestProcessor.class);
 
   @Inject
-  @JMSConnectionFactory("java:/JmsXA")
   private JMSContext context;
 
   @Resource(name = "java:global/jms/queue/demo/reply")
