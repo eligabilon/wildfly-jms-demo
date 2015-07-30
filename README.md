@@ -86,8 +86,8 @@ When using HTTP Upgrade transport, connections to the HornetQ acceptor must
 be successfully authenticated.  The subject (user) associated with the 
 connection must have a role that is authorized with permissions appropriate for 
 interacting with the messaging subsystem.  This will require the creation of 
-a user, associated password, and role, along with the configuration that 
-assigns messaging-subsystem-specific permissions to the given role.
+a user, associated password, and role, along with configuration that assigns 
+messaging-subsystem-specific permissions to the given role.
 
 ### Create the HTTP Upgrade Transport Acceptor and Connector
 
@@ -120,7 +120,7 @@ hornetq=77a8417ab6a763ceb7696e871c11a6ae
 ```
 
 Edit the `application-roles.properties` file and add this line, which assigns
-the *hornetq-connector* to the *hornetq* user.
+the *hornetq-connector* role to the *hornetq* user.
 
 ```
 hornetq=hornetq-connector
