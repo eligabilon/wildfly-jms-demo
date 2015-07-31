@@ -36,7 +36,7 @@ your workstation:
 * In the first window, change to the home directory for the Wildfly installation
   and start Wildfly standalone using `bin/standalone.sh`
 * In the second window, change to the home directory for the Wildfly 
-  installation and start the CLI using `bin/jboss-cli.sh --connect`.
+  installation and start the CLI using `bin/jboss-cli.sh --connect`
 * In the third window, change to the base directory for your clone of the
   demo source code.  We'll use Maven to build and deploy the demo when needed.
 
