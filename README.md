@@ -16,10 +16,30 @@ of the Undertow subsystem.  HornetQ client connections are established using the
 HTTP protocol, and then upgraded to utilize the HornetQ wire protocol over the 
 same socket connection. 
 
-# Configuring HornetQ for JMS
+# Setup
 
-We'll use the JBoss CLI (`jboss-cli.sh`) to do all of our configuration of 
-Wildfly.
+Clone the git repository containing the demo source code in a convenient 
+location on your local filesystem:
+
+```
+git clone https://github.com/ceharris/wildfly-jms-demo.git
+```
+
+We'll be using the JBoss CLI (`jboss-cli.sh`) to do all of the necessary Wildfly 
+configuration.  Of course, Wildfly needs to be running in order for the CLI to 
+do its job.
+
+The easiest way to work through this demo is to use three terminal windows on
+your workstation:
+
+* In the first window, change to the home directory for the Wildfly installation
+and start Wildfly standalone using `bin/standalone.sh`
+* In the second window, change to the home directory for the Wildfly installation
+and start the CLI using `bin/jboss-cli.sh`.
+* In the third window, change to the base directory for your clone of the
+demo source code.  We'll use Maven to build and deploy the demo when needed.
+
+# Configuring HornetQ for JMS
 
 ### Enable the Messaging Subsystem
 
