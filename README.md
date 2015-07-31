@@ -4,10 +4,11 @@ wildfly-jms-demo
 Example of JMS 2 in Java EE using Wildfly 8.2.
 
 In this example, we start with an out-of-the-box standalone configuration of
-Wildfly 8.2 and then use the Wildfly CLI to add all of the configuration needed 
-for JMS in Java EE using the embedded HornetQ message broker.  We then deploy a 
-Java EE application using Message-Driven beans to receive messages and the 
-(new to JMS 2) injectable `JMSContext` to send messages.
+Wildfly 8.2 (or later) and then use the Wildfly CLI to add all of the 
+configuration needed for JMS in Java EE using the embedded HornetQ message 
+broker.  We then deploy a Java EE application using Message-Driven beans to 
+receive messages and the (new to JMS 2) injectable `JMSContext` to send 
+messages.
 
 Wildfly's built in JMS provider is HornetQ.  After getting a basic configuration 
 working using HornetQ's in-VM transport, we then reconfigure HornetQ to use HTTP 
@@ -33,11 +34,11 @@ The easiest way to work through this demo is to use three terminal windows on
 your workstation:
 
 * In the first window, change to the home directory for the Wildfly installation
-and start Wildfly standalone using `bin/standalone.sh`
-* In the second window, change to the home directory for the Wildfly installation
-and start the CLI using `bin/jboss-cli.sh`.
+  and start Wildfly standalone using `bin/standalone.sh`
+* In the second window, change to the home directory for the Wildfly 
+  installation and start the CLI using `bin/jboss-cli.sh --connect`.
 * In the third window, change to the base directory for your clone of the
-demo source code.  We'll use Maven to build and deploy the demo when needed.
+  demo source code.  We'll use Maven to build and deploy the demo when needed.
 
 # Configuring HornetQ for JMS
 
@@ -106,13 +107,13 @@ is a simple queue that is located using a JNDI lookup.
 
 The demo application consists of three beans.
 
-* `RequestSender` is a timer-driven singleton bean that sends request messages on
-  the request queue.
-  Each request is simply an integer value that represents a request identifier.
+* `RequestSender` is a timer-driven singleton bean that sends request messages 
+  on the request queue. Each request is simply an integer value that represents 
+  a request identifier.
 * `RequestProcessor` is a message-driven bean that consumes messages from the
   request queue.  It "processes" requests by logging a message indicating that
   a request was received and then sending a reply message on the reply queue.
-* `ReplyProcessor` is a message-driven mena that consumes messages from the
+* `ReplyProcessor` is a message-driven bean that consumes messages from the
   reply queue.  When a reply is received, it logs a message.
   
 When the application is running, you should see a steady stream of messages
