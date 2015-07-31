@@ -93,6 +93,25 @@ in the default standalone configuration of Wildfly.
 /subsystem=ejb3:write-attribute(name=default-mdb-instance-pool,value=mdb-strict-max-pool)
 ```
 
+### Configure Default Connection Factory
+
+In Java EE 7, a default JMS `ConnectionFactory` is provided to every deployment
+in the container.  This avoids the need for every JMS application to include a
+lot of (often container specific) connection factory specification in deployment
+descriptors and/or annotations.
+
+In Wildfly 8, a JNDI binding is included for the default connection factory as
+part of the base configuration.  In Wildfly 9 the required JNDI binding was 
+omitted from the base configuration, so we need to add it ourselves:
+
+```
+/subsystem=ee/service=default-bindings:write-attribute(name=jms-connection-factory, value=java:jboss/DefaultJMSConnectionFactory)
+```
+
+It won't hurt anything to use this CLI command on Wildfly 8, but it isn't
+necessary.
+
+
 ### Create JMS Queues
 
 Our demo application uses a *request* queue and a *reply* queue.  Each of these
@@ -139,7 +158,7 @@ mvn wildfly:deploy
 
 After running the demo and verifying that it works properly, you should
 undeploy it so that it will no longer produce console messages, and so that you
-won't see errors logged as we reconfigure for the next steps
+won't see errors logged as we reconfigure for the next steps.
 
 ```
 mvn wildfly:undeploy
