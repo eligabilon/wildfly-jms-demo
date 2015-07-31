@@ -1,10 +1,10 @@
 wildfly-jms-demo
 ================
 
-Example of JMS 2 in Java EE using Wildfly 8.2.
+Example of JMS 2 in Java EE using Wildfly.
 
 In this example, we start with an out-of-the-box standalone configuration of
-Wildfly 8.2 (or later) and then use the Wildfly CLI to add all of the 
+Wildfly 8.2 or Wildfly 9 and then use the Wildfly CLI to add all of the 
 configuration needed for JMS in Java EE using the embedded HornetQ message 
 broker.  We then deploy a Java EE application using Message-Driven beans to 
 receive messages and the (new to JMS 2) injectable `JMSContext` to send 
