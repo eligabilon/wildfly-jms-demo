@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
 
 @MessageDriven(activationConfig = {
     @ActivationConfigProperty(propertyName = "destinationLookup",
-        propertyValue = "java:global/jms/queue/demo/request"),
+        propertyValue = Resources.REQUEST_QUEUE_REF),
     @ActivationConfigProperty(propertyName = "destinationType",
         propertyValue = "javax.jms.Queue")
 })
@@ -44,14 +44,14 @@ public class RequestProcessor implements MessageListener {
   @Inject
   private JMSContext context;
 
-  @Resource(name = "java:global/jms/queue/demo/reply")
+  @Resource(name = Resources.REPLY_QUEUE_REF)
   private Destination replyQueue;
 
   public void onMessage(Message message) {
     try {
       String request = message.getBody(String.class);
       logger.info("received request: {}", request);
-      context.createProducer().send(replyQueue, "reply for " + request);
+      context.createProducer().send(replyQueue, "processed request " + request);
     }
     catch (JMSException ex) {
       logger.error("error receiving JMS message", ex);

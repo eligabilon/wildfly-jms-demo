@@ -37,7 +37,7 @@ public class RequestSender {
   @Inject
   private JMSContext context;
 
-  @Resource(name = "java:global/jms/queue/demo/request")
+  @Resource(name = Resources.REQUEST_QUEUE_REF)
   private Destination requestQueue;
 
   private long requestId;

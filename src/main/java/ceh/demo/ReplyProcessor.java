@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 
 @MessageDriven(activationConfig = {
     @ActivationConfigProperty(propertyName = "destinationLookup",
-        propertyValue = "java:global/jms/queue/demo/reply"),
+        propertyValue = Resources.REPLY_QUEUE_REF),
     @ActivationConfigProperty(propertyName = "destinationType",
         propertyValue = "javax.jms.Queue")
 })
