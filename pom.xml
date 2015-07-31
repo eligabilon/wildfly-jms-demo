@@ -31,17 +31,28 @@
     <javaEE.version>7.0</javaEE.version>
   </properties>
 
+  <prerequisites>
+    <maven>3.2.1</maven>
+  </prerequisites>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.wildfly.plugins</groupId>
+        <artifactId>wildfly-maven-plugin</artifactId>
+        <version>1.0.2.Final</version>
+        <configuration>
+          <force>true</force>
+          <ignoreMissingDeployment>true</ignoreMissingDeployment>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
   <dependencies>
     <dependency>
       <groupId>org.jboss.spec</groupId>
       <artifactId>jboss-javaee-${javaEE.version}</artifactId>
-      <type>pom</type>
-      <version>1.0.1.Final</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jboss.spec</groupId>
-      <artifactId>jboss-javaee-web-${javaEE.version}</artifactId>
       <type>pom</type>
       <version>1.0.1.Final</version>
       <scope>provided</scope>
