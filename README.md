@@ -234,14 +234,14 @@ any topic/queue to the *hornetq-connector* role.
 
 ```
 /subsystem=messaging/hornetq-server=default/security-setting=#:add
-/subsystem=messaging/hornetq-server=default/security-setting=#/role=hornetq-connector:add(consume=true, send=true)
+/subsystem=messaging/hornetq-server=default/security-setting=#/role=hornetq-connector:add(consume=true, send=true, delete-non-durable-queue=false, create-non-durable-queue=false, delete-durable-queue=false, create-durable-queue=false, manage=false)
 ```
 
 ### Restart Wildfly
 
-Due do a bug in Wildfly (see [WFLY-3355] (https://issues.jboss.org/browse/WFLY-3355)), 
+Due to a bug in Wildfly (see [WFLY-3355] (https://issues.jboss.org/browse/WFLY-3355)), 
 we must stop and restart the Wildfly process after reconfiguring the resource 
-adapter with a username and password.
+adapter.
 
 Apparently, the `WorkManager` that is used by resource adapters is marked as
 "shutting down" when the `reload` CLI command is used, but its status does not
